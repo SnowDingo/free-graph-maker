@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from 'react';
 function App() {
   const [graphtype,setgraphType] = useState("bar")
-  const [data,setdata] = useState([5,5])
+  const [data,setdata] = useState([102,92,54,83,132,81,9])
   function changedata(e,id){
     var virtualdata = data
     virtualdata[id] = e.target.value
