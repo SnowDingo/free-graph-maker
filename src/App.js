@@ -11,6 +11,7 @@ import {
   Legend
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
+import { AppBar, Button } from '@mui/material';
 
 ChartJS.register(
   CategoryScale,
@@ -41,6 +42,7 @@ function App() {
     console.log(graph)
     setgraphType(graph)
   }
+  /*　グラフのオプション等を表示 */
   var graphData= {
     type: [
       "line",
@@ -75,8 +77,9 @@ function App() {
   return (
     <div className="App">
       <body>
-        <h1>FreeGraphMaker</h1>
-        <div className='options'>
+        <AppBar><h1>FreeGraphMaker</h1></AppBar>
+        <div className='content'>
+          <div className='options'>
           <h2>ChartContext</h2>
             <input placeholder={data[0]} onChange={(e) => changedata(e,0)}>{}</input>
             <input placeholder={data[1]} onChange={(e) => changedata(e,1)}></input>
@@ -95,7 +98,8 @@ function App() {
             </select>
         </div>
         <Chart datasetIdKey='key' className='bar' id="canvas" type={graphtype} data={graphData} redraw ></Chart>
-        <button id="download" onClick={(e) => {download()}}>download</button>
+        <Button variant='contained' id="download" onClick={(e) => {download()}}>download</Button></div>
+        
       </body>
     </div>
   );
