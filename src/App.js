@@ -74,13 +74,13 @@ function App() {
           <h2>Chart Data</h2>
           <div>
             <h3>Labels</h3>
-            <input placeholder={labels[0]} onChange={(e) => changelabel(e,1)}></input>
-            <input placeholder={labels[1]} onChange={(e) => changelabel(e,2)}>{}</input>
-            <input placeholder={labels[2]} onChange={(e) => changelabel(e,3)}>{}</input>
-            <input placeholder={labels[3]} onChange={(e) => changelabel(e,4)}>{}</input>
-            <input placeholder={labels[4]} onChange={(e) => changelabel(e,5)}>{}</input>
-            <input placeholder={labels[5]} onChange={(e) => changelabel(e,6)}>{}</input>
-            <input placeholder={labels[6]} onChange={(e) => changelabel(e,7)}>{}</input>
+            <input placeholder={labels[0]} onChange={(e) => changelabel(e,0)}></input>
+            <input placeholder={labels[1]} onChange={(e) => changelabel(e,1)}>{}</input>
+            <input placeholder={labels[2]} onChange={(e) => changelabel(e,2)}>{}</input>
+            <input placeholder={labels[3]} onChange={(e) => changelabel(e,3)}>{}</input>
+            <input placeholder={labels[4]} onChange={(e) => changelabel(e,4)}>{}</input>
+            <input placeholder={labels[5]} onChange={(e) => changelabel(e,5)}>{}</input>
+            <input placeholder={labels[6]} onChange={(e) => changelabel(e,6)}>{}</input>
           </div>
           <div className='datas'>
             <h3>Data</h3>
@@ -97,6 +97,7 @@ function App() {
                   <MenuItem value="bar">bar</MenuItem>
                   <MenuItem value="line">line</MenuItem>
                   <MenuItem value="pie">pie</MenuItem>
+                  <MenuItem value="doughnut">Doughnut</MenuItem>
             </Select>
         </div>
         <Chart datasetIdKey='key' className='bar' id="canvas" type={graphtype} data={graphData} redraw ></Chart>
