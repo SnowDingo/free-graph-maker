@@ -11,7 +11,7 @@ import {
   Legend
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { AppBar, Button } from '@mui/material';
+import { AppBar, Button, MenuItem, Select } from '@mui/material';
 
 ChartJS.register(
   CategoryScale,
@@ -80,7 +80,7 @@ function App() {
         <AppBar><h1>FreeGraphMaker</h1></AppBar>
         <div className='content'>
           <div className='options'>
-          <h2>ChartContext</h2>
+          <h2>Chart Data</h2>
             <input placeholder={data[0]} onChange={(e) => changedata(e,0)}>{}</input>
             <input placeholder={data[1]} onChange={(e) => changedata(e,1)}></input>
             <input placeholder={data[0]} onChange={(e) => changedata(e,2)}>{}</input>
@@ -89,13 +89,12 @@ function App() {
             <input placeholder={data[1]} onChange={(e) => changedata(e,5)}>{}</input>
             <input placeholder={data[0]} onChange={(e) => changedata(e,6)}>{}</input>
             <input placeholder={data[1]} onChange={(e) => changedata(e,7)}>{}</input>
-          <button onClick={(e) => {ApplyChanges()}}>Apply Changes</button>
           <h2>Graphtype</h2>
-          <select id="graphtype" onChange={(e) => {setgraphType(e.target.value)}}>
-                  <option value="bar">bar</option>
-                  <option value="line">line</option>
-                  <option value="pie">pie</option>
-            </select>
+          <Select id="graphtype" onChange={(e) => {setgraphType(e.target.value)}}>
+                  <MenuItem value="bar">bar</MenuItem>
+                  <MenuItem value="line">line</MenuItem>
+                  <MenuItem value="pie">pie</MenuItem>
+            </Select>
         </div>
         <Chart datasetIdKey='key' className='bar' id="canvas" type={graphtype} data={graphData} redraw ></Chart>
         <Button variant='contained' id="download" onClick={(e) => {download()}}>download</Button></div>
