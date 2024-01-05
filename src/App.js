@@ -31,33 +31,24 @@ function download(){
 function App() {
   const [graphtype,setgraphType] = useState("bar")
   const [data,setdata] = useState([102,92,54,83,132,81,9])
+  const [labels,setLabels] = useState(["Jan","Feb","Mar","Apr","May","Jun","Jly",])
   function changedata(e,id){
     var virtualdata = data
     virtualdata[id] = e.target.value
-    setdata(virtualdata)
-    console.log(data)
+    setdata([...virtualdata])
   }
-  function ApplyChanges(){
-    var graph = graphtype
-    console.log(graph)
-    setgraphType(graph)
+  /* ラベルを変更する関数 */
+  function changelabel(e,id){
+    var virtuallabel = labels
+    virtuallabel[id] = e.target.value
+    setLabels([...virtuallabel])
   }
   /*　グラフのオプション等を表示 */
   var graphData= {
     type: [
       "line",
     ],
-    labels: [
-      // 軸ラベル
-      // 各ラベルを配列にすることで軸ラベルが改行されて表示される
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jly",
-    ],
+    labels: labels,
     options: {
       plugins: {
         customCanvasBackgroundColor: {
@@ -81,14 +72,26 @@ function App() {
         <div className='content'>
           <div className='options'>
           <h2>Chart Data</h2>
-            <input placeholder={data[0]} onChange={(e) => changedata(e,0)}>{}</input>
+          <div>
+            <h3>Labels</h3>
+            <input placeholder={labels[0]} onChange={(e) => changelabel(e,1)}></input>
+            <input placeholder={labels[1]} onChange={(e) => changelabel(e,2)}>{}</input>
+            <input placeholder={labels[2]} onChange={(e) => changelabel(e,3)}>{}</input>
+            <input placeholder={labels[3]} onChange={(e) => changelabel(e,4)}>{}</input>
+            <input placeholder={labels[4]} onChange={(e) => changelabel(e,5)}>{}</input>
+            <input placeholder={labels[5]} onChange={(e) => changelabel(e,6)}>{}</input>
+            <input placeholder={labels[6]} onChange={(e) => changelabel(e,7)}>{}</input>
+          </div>
+          <div className='datas'>
+            <h3>Data</h3>
+          <input placeholder={data[0]} onChange={(e) => changedata(e,0)}>{}</input>
             <input placeholder={data[1]} onChange={(e) => changedata(e,1)}></input>
-            <input placeholder={data[0]} onChange={(e) => changedata(e,2)}>{}</input>
-            <input placeholder={data[1]} onChange={(e) => changedata(e,3)}>{}</input>
-            <input placeholder={data[0]} onChange={(e) => changedata(e,4)}>{}</input>
-            <input placeholder={data[1]} onChange={(e) => changedata(e,5)}>{}</input>
-            <input placeholder={data[0]} onChange={(e) => changedata(e,6)}>{}</input>
-            <input placeholder={data[1]} onChange={(e) => changedata(e,7)}>{}</input>
+            <input placeholder={data[2]} onChange={(e) => changedata(e,2)}>{}</input>
+            <input placeholder={data[3]} onChange={(e) => changedata(e,3)}>{}</input>
+            <input placeholder={data[4]} onChange={(e) => changedata(e,4)}>{}</input>
+            <input placeholder={data[5]} onChange={(e) => changedata(e,5)}>{}</input>
+            <input placeholder={data[6]} onChange={(e) => changedata(e,6)}>{}</input>
+          </div>
           <h2>Graphtype</h2>
           <Select id="graphtype" onChange={(e) => {setgraphType(e.target.value)}}>
                   <MenuItem value="bar">bar</MenuItem>
