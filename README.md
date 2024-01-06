@@ -9,8 +9,10 @@ Most codes are in -app.js- so feel free to read comments in the file.
 * /public -> Folder with images and general files. (**Favicon and Images are lincensed so using any files on public folder for other purposes than using it for this project is illegal. **)
 
 ## Author
+![Author icon with fish](public/icon.png)
 * Most codes written by me(SnowDingo)
-* Some help from StackOverflowCommunity
+Take a look at my personal blog for more info
+![blog](https://binary-fish.vercel.app/)
 
 ## Lincense
 This project is a personal project. It doesn't mean that this project has copyright, and illegal copying of the code and the app is not allowed. 
