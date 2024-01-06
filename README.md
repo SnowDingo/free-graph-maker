@@ -1,5 +1,5 @@
-# What is a Free Graph Maker?
-Free Graph Maker is an app that allows anyone to create visually appealing graphs and charts instantly.
+# What is Free Graph Maker?
+Free Graph Maker is an app that allows anyone to create visually appealing graphs and charts instantly. This app aims to become an app where anyone can create a visually appealing graphs and charts in couple of minutes.
 
 ![App preview](public/App.png)
 ## Tech
