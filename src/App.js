@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { AppBar, Button, IconButton, MenuItem, Select } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Add, Delete } from '@mui/icons-material';
 
 ChartJS.register(
   CategoryScale,
@@ -64,6 +64,15 @@ function App() {
     setLabels([...virtualLabel])
   }
 
+  function addlabel(){
+    var virtualdata = data
+    var virtualLabel = labels
+    virtualLabel.push("data")
+    virtualdata.push(0)
+    setdata([...virtualdata])
+    setLabels([...virtualLabel])
+  }
+
   /*　グラフのオプション等を表示 */
   var graphData= {
     type: [
@@ -94,7 +103,14 @@ function App() {
           <div className='options'>
           <h2>Chart Data</h2>
           <div>
+            <div className='row'>
             <h3>Labels</h3>
+            <IconButton aria-label="delete" onClick={() => addlabel()}>
+                <Add />
+            </IconButton>
+            </div>
+            
+            
             <div className='labelInputs'>
               {labels.map((todo, index) => (
                   <div className='labelinput'>
