@@ -11,7 +11,8 @@ import {
   Legend
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { AppBar, Button, MenuItem, Select } from '@mui/material';
+import { AppBar, Button, IconButton, MenuItem, Select } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 ChartJS.register(
   CategoryScale,
@@ -32,17 +33,37 @@ function App() {
   const [graphtype,setgraphType] = useState("bar")
   const [data,setdata] = useState([102,92,54,83,132,81,9])
   const [labels,setLabels] = useState(["Jan","Feb","Mar","Apr","May","Jun","Jly",])
+  /*　データを変更したときにグラフにも変更が及ぶよう変える関数 */
   function changedata(e,id){
     var virtualdata = data
     virtualdata[id] = e.target.value
     setdata([...virtualdata])
   }
+
   /* ラベルを変更する関数 */
   function changelabel(e,id){
     var virtuallabel = labels
     virtuallabel[id] = e.target.value
     setLabels([...virtuallabel])
   }
+  function deletedata(id) {
+    var virtualdata = data
+    virtualdata.splice(id,1)
+    var virtualLabel = labels
+    virtualLabel.splice(id,1)
+    setdata([...virtualdata])
+    setLabels([...virtualLabel])
+  }
+
+  function deletelabel(id) {
+    var virtualdata = data
+    virtualdata.splice(id,1)
+    var virtualLabel = labels
+    virtualLabel.splice(id,1)
+    setdata([...virtualdata])
+    setLabels([...virtualLabel])
+  }
+
   /*　グラフのオプション等を表示 */
   var graphData= {
     type: [
@@ -74,23 +95,31 @@ function App() {
           <h2>Chart Data</h2>
           <div>
             <h3>Labels</h3>
-            <input placeholder={labels[0]} onChange={(e) => changelabel(e,0)}></input>
-            <input placeholder={labels[1]} onChange={(e) => changelabel(e,1)}>{}</input>
-            <input placeholder={labels[2]} onChange={(e) => changelabel(e,2)}>{}</input>
-            <input placeholder={labels[3]} onChange={(e) => changelabel(e,3)}>{}</input>
-            <input placeholder={labels[4]} onChange={(e) => changelabel(e,4)}>{}</input>
-            <input placeholder={labels[5]} onChange={(e) => changelabel(e,5)}>{}</input>
-            <input placeholder={labels[6]} onChange={(e) => changelabel(e,6)}>{}</input>
+            <div className='labelInputs'>
+              {labels.map((todo, index) => (
+                  <div className='labelinput'>
+                    <input placeholder={labels[index]} onChange={(e) => changelabel(e,index)}>{}</input>
+                    <IconButton aria-label="delete" onClick={() => deletelabel(index)}>
+                        <Delete />
+                      </IconButton>
+                      </div>
+               ))}
+            </div>
+            
           </div>
           <div className='datas'>
             <h3>Data</h3>
-          <input placeholder={data[0]} onChange={(e) => changedata(e,0)}>{}</input>
-            <input placeholder={data[1]} onChange={(e) => changedata(e,1)}></input>
-            <input placeholder={data[2]} onChange={(e) => changedata(e,2)}>{}</input>
-            <input placeholder={data[3]} onChange={(e) => changedata(e,3)}>{}</input>
-            <input placeholder={data[4]} onChange={(e) => changedata(e,4)}>{}</input>
-            <input placeholder={data[5]} onChange={(e) => changedata(e,5)}>{}</input>
-            <input placeholder={data[6]} onChange={(e) => changedata(e,6)}>{}</input>
+            <div className='dataInputs'>
+               {data.map((todo, index) => (
+                 <div className='datainput'>
+                 <input placeholder={data[index]} onChange={(e) => changedata(e,index)}>{}</input>
+                 <IconButton aria-label="delete" onClick={() => deletedata(index)}>
+                    <Delete />
+                  </IconButton>
+                  </div>
+              ))}
+            </div>
+           
           </div>
           <h2>Graphtype</h2>
           <Select id="graphtype" onChange={(e) => {setgraphType(e.target.value)}}>

@@ -14,3 +14,16 @@
 .content{
   margin-top: 12ch;
 }
+input{
+  max-width: 100px;
+  text-align: start;
+  border:2px #727272 solid;
+  border-radius: 2px;
+  min-height: 30px;
+  margin: 0 2.5px;
+  box-shadow: inset 1px 1px 9px -6px rgba(0,0,0,0.5);
+}
+input:focus{
+  box-shadow: 0 0px 5px 0 rgb(28, 77, 236);
+  outline: 0;
+}
