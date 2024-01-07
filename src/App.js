@@ -11,8 +11,10 @@ import {
   Legend
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { AppBar, Button, IconButton, MenuItem, Select } from '@mui/material';
-import { Add, Delete } from '@mui/icons-material';
+import { AppBar, Button, IconButton, MenuItem, Select, Toolbar } from '@mui/material';
+import { Add, Delete, Help, Menu } from '@mui/icons-material';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import History from "./VersionHistory"
 
 ChartJS.register(
   CategoryScale,
@@ -33,6 +35,7 @@ function App() {
   const [graphtype,setgraphType] = useState("bar")
   const [data,setdata] = useState([102,92,54,83,132,81,9])
   const [labels,setLabels] = useState(["Jan","Feb","Mar","Apr","May","Jun","Jly",])
+  const [datasetlabel,setDatasetLabel] = useState('our sales')
   /*　データを変更したときにグラフにも変更が及ぶよう変える関数 */
   function changedata(e,id){
     var virtualdata = data
@@ -45,6 +48,12 @@ function App() {
     var virtuallabel = labels
     virtuallabel[id] = e.target.value
     setLabels([...virtuallabel])
+  }
+  /* データセットの名称を変更する*/
+  function changedatasetlabel(e){
+    var text = e.target.value
+    setDatasetLabel('')
+    setDatasetLabel(...text)
   }
   function deletedata(id) {
     var virtualdata = data
@@ -90,7 +99,7 @@ function App() {
       // 表示するデータセット
       {
         data: data,
-        label:'cookies sold',
+        label:datasetlabel,
       },
     ],
   };
@@ -98,10 +107,21 @@ function App() {
   return (
     <div className="App">
       <body>
-        <AppBar><h1>FreeGraphMaker</h1></AppBar>
+        <AppBar>
+          <h1 className='center'>FreeGraphMaker</h1>
+          </AppBar>
         <div className='content'>
           <div className='options'>
           <h2>Chart Data</h2>
+          <div>
+            <div className='row'>
+            <h3>DataLabel</h3>
+            </div>
+            <div className='labelInputs'>
+                <input placeholder='' onChange={(e) => changedatasetlabel(e)}></input>
+            </div>
+            
+          </div>
           <div>
             <div className='row'>
             <h3>Labels</h3>
@@ -109,8 +129,6 @@ function App() {
                 <Add />
             </IconButton>
             </div>
-            
-            
             <div className='labelInputs'>
               {labels.map((todo, index) => (
                   <div className='labelinput'>
@@ -147,7 +165,11 @@ function App() {
         </div>
         <Chart datasetIdKey='key' className='bar' id="canvas" type={graphtype} data={graphData} redraw ></Chart>
         <Button variant='contained' id="download" onClick={(e) => {download()}}>download</Button></div>
-        
+        <div className="button">
+          <Button variant="contained" className="button" aria-label="add">
+            <a className="a" href="/history">Version history</a>
+          </Button>
+        </div>
       </body>
     </div>
   );
